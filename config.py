@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     CONSUMER_SECRET:str 
     POSTGRES_USER:str 
     POSTGRES_PASSWORD:str 
-    POSTGRES_DATABASE:str
+    POSTGRES_DB:str
 
 
 
