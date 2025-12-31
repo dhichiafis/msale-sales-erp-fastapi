@@ -11,9 +11,32 @@ from database import *
 from sqlalchemy.orm import Session
 from models.model import *
 from contextlib import asynccontextmanager
+import time
+from sqlalchemy import create_engine
+from sqlalchemy.exc import OperationalError
+from config import settings  # your DB_URL from env
+
+
+'''
+max_tries = 10
+for i in range(max_tries):
+    try:
+        engine = create_engine(settings.DB_URL)
+        connection = engine.connect()
+        connection.close()
+        print("✅ Database is ready!")
+        break
+    except OperationalError:
+        print(f"Waiting for database... ({i+1}/{max_tries})")
+        time.sleep(3)
+else:
+    raise Exception("❌ Could not connect to the database after several attempts")
 
 
 Base.metadata.create_all(bind=engine)
+'''
+
+
 
 def seed_accounts(db):
     account_names=['Cash Account','Bank Deposit','Cash Reward']

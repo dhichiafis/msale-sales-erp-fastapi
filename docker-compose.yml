@@ -1,35 +1,25 @@
-
-version: '3.9'
-
-
 services:
   db:
     image: postgres:15-alpine
-    container_name: msale_db
-    restart: always
+    container_name: msale3_db
     environment:
-      POSTGRES_USER: msaleuser
-      POSTGRES_PASSWORD: msalepassword
-      POSTGRES_DB: msaledb
-    env_file:
-      - .env 
-
+      POSTGRES_USER: msale3user
+      POSTGRES_PASSWORD: msale3pass
+      POSTGRES_DB: msale3db
     ports:
       - "5432:5432"
-
     volumes:
-      - postgres_data:/var/lib/postgresql/data 
+      - postgres_data:/var/lib/postgresql/data
 
-  web:  
+  app:
     build: .
-    container_name: msale_app
-    restart: always
+    container_name: msale3_app
+    environment:
+      DB_URL: postgresql+psycopg2://msale3user:msale3pass@db:5432/msale3db
+    depends_on:
+      - db
     ports:
       - "8000:8000"
-    depends_on:
-      - db 
-    env_file:
-      - .env 
 
 volumes:
   postgres_data:
