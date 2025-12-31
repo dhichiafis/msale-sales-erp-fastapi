@@ -78,7 +78,7 @@ app=FastAPI(
   ## allow_credentials=True 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173","http://localhost:8000"],  # must match Vue dev URL
+    allow_origins=["*",],  # must match Vue dev URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
