@@ -27,6 +27,7 @@ def get_access_token():
 
 
 def send_stk_push(phone_number,amount):
+    phone_number=int(phone_number)
 
     token=get_access_token()
     url="https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
